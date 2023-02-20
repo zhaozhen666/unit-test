@@ -23,4 +23,26 @@ public class ListTest {
         Assert.assertEquals("返回值不相等",expected,actual);
     }
 
+
+    @Test
+    public void testGet(){
+        int index = 0 ;
+        Integer expected=100;
+        List<Integer> mockList = PowerMockito.mock(List.class);
+        PowerMockito.doReturn(expected).when(mockList).get(index);
+        Integer actual = mockList.get(index);
+        System.out.println(expected);
+        System.out.println(actual);
+        Assert.assertEquals("返回值不相等",expected,actual);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void  testException(){
+        int index = -1 ;
+        Integer expected=100;
+        List<Integer> mockList = PowerMockito.mock(List.class);
+        PowerMockito.doThrow(new IndexOutOfBoundsException()).when(mockList).get(index);
+        Integer actual = mockList.get(index);
+        Assert.assertEquals("返回值不相等",expected,actual);
+    }
 }
