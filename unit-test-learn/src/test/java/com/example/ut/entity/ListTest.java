@@ -45,4 +45,19 @@ public class ListTest {
         Integer actual = mockList.get(index);
         Assert.assertEquals("返回值不相等",expected,actual);
     }
+
+    @Test
+    public void doAnswer(){
+        int index = 1 ;
+        Integer expected=100;
+        List<Integer> mockList = PowerMockito.mock(List.class);
+        PowerMockito.doAnswer(invocation->{
+            Integer value = invocation.getArgument(0);
+            System.out.println(value);
+            return value*100;
+        }).when(mockList).get(index);
+        Integer actual = mockList.get(index);
+        Assert.assertEquals("返回值不相等",expected,actual);
+
+    }
 }
