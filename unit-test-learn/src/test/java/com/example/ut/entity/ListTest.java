@@ -2,8 +2,10 @@ package com.example.ut.entity;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -59,5 +61,25 @@ public class ListTest {
         Integer actual = mockList.get(index);
         Assert.assertEquals("返回值不相等",expected,actual);
 
+    }
+
+    @Test
+    public void testClear(){
+        List<Integer> mockList = PowerMockito.mock(List.class);
+        PowerMockito.doNothing().when(mockList).clear();
+        mockList.clear();
+        Mockito.verify(mockList).clear();
+    }
+
+    @Test
+    public void  testReal(){
+        int index =0 ;
+        Integer expected =100;
+        List<Integer> oldList = new ArrayList<>();
+        oldList.add(expected);
+        List<Integer> spyList = PowerMockito.spy(oldList);
+        PowerMockito.doCallRealMethod().when(spyList).get(index);
+        Integer actual = spyList.get(index);
+        Assert.assertEquals("返回值不相等",expected,actual);
     }
 }
