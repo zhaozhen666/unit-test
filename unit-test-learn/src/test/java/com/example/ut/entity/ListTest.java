@@ -2,6 +2,7 @@ package com.example.ut.entity;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.InOrder;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 
@@ -100,5 +101,18 @@ public class ListTest {
         PowerMockito.doNothing().when(mockList).clear();
         mockList.clear();
         Mockito.verify(mockList,Mockito.times(1)).clear();
+    }
+
+    @Test
+    public void testOrder(){
+        List<Integer> mockList = PowerMockito.mock(List.class);
+        PowerMockito.doReturn(true).when(mockList).add(Mockito.anyInt());
+        mockList.add(1);
+        mockList.add(2);
+        mockList.add(3);
+        InOrder inOrder = Mockito.inOrder(mockList);
+        inOrder.verify(mockList).add(1);
+        inOrder.verify(mockList).add(2);
+        inOrder.verify(mockList).add(3);
     }
 }
