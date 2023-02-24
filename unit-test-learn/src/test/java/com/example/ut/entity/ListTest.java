@@ -92,4 +92,13 @@ public class ListTest {
         Integer actual = mockList.get(index);
         Assert.assertEquals("返回值不相等",expected,actual);
     }
+
+
+    @Test
+    public void testTimes(){
+        List<Integer> mockList = PowerMockito.mock(List.class);
+        PowerMockito.doNothing().when(mockList).clear();
+        mockList.clear();
+        Mockito.verify(mockList,Mockito.times(1)).clear();
+    }
 }
