@@ -82,4 +82,14 @@ public class ListTest {
         Integer actual = spyList.get(index);
         Assert.assertEquals("返回值不相等",expected,actual);
     }
+
+    @Test
+    public void testAny(){
+        int index =0 ;
+        Integer expected =100;
+        List<Integer> mockList = PowerMockito.mock(List.class);
+        PowerMockito.when(mockList.get(Mockito.anyInt())).thenReturn(expected);
+        Integer actual = mockList.get(index);
+        Assert.assertEquals("返回值不相等",expected,actual);
+    }
 }
