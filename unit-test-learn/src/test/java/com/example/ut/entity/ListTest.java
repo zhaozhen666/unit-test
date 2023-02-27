@@ -2,6 +2,7 @@ package com.example.ut.entity;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InOrder;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
@@ -114,5 +115,19 @@ public class ListTest {
         inOrder.verify(mockList).add(1);
         inOrder.verify(mockList).add(2);
         inOrder.verify(mockList).add(3);
+    }
+
+    @Test
+    public  void testArgument(){
+        Integer [] expects = new Integer[]{1,2,3};
+        List<Integer> mockedList = PowerMockito.mock(List.class);
+        PowerMockito.doReturn(true).when(mockedList).add(Mockito.anyInt());
+        for (Integer expect :expects){
+            mockedList.add(expect);
+        }
+        ArgumentCaptor<Integer> argumentCaptor = ArgumentCaptor.forClass(Integer.class);
+        Mockito.verify(mockedList,Mockito.times(3)).add(argumentCaptor.capture());
+        Integer [] actuals = argumentCaptor.getAllValues().toArray(new Integer[0]);
+        Assert.assertArrayEquals("返回值不相等",expects,actuals);
     }
 }
