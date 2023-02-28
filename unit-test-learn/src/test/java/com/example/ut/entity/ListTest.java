@@ -130,4 +130,13 @@ public class ListTest {
         Integer [] actuals = argumentCaptor.getAllValues().toArray(new Integer[0]);
         Assert.assertArrayEquals("返回值不相等",expects,actuals);
     }
+
+
+    @Test
+    public void testNoMoreActions(){
+        List<Integer> mockedList = PowerMockito.mock(List.class);
+        Mockito.verifyNoMoreInteractions(mockedList);
+        mockedList.isEmpty();
+        Mockito.verifyNoMoreInteractions(mockedList);
+    }
 }
