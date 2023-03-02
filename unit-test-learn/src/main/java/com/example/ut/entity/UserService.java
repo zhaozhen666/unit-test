@@ -14,6 +14,14 @@ public class UserService {
     public boolean isNotSuperUser(Long userId){
         return !isSuperUserId(userId);
     }
+
+    private boolean isSuperUsers(Long userId){
+        return false;
+    }
+
+    public boolean isNotSuperUsers(Long userId){
+        return isSuperUsers(userId);
+    }
     public boolean isSuperUserId(Long userId){
         return Objects.equals(userId,superUserId);
     }
