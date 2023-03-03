@@ -34,4 +34,15 @@ public class UserServiceTest {
         boolean actual = userService.isNotSuperUsers(userId);
         Assert.assertEquals("返回值不相等",expected,actual);
     }
+
+    @Test
+    public void  testVerifyPrivate() throws Exception{
+        Long userId =1L;
+        boolean expected= false;
+        UserService userService = PowerMockito.spy(new UserService());
+        PowerMockito.when(userService,"isSuperUsers",userId).thenReturn(!expected);
+        boolean actual = userService.isNotSuperUsers(userId);
+        PowerMockito.verifyPrivate(userService).invoke("isSuperUsers",userId);
+        Assert.assertEquals("返回值不相等",expected,actual);
+    }
 }
