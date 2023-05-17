@@ -9,9 +9,6 @@ import org.springframework.stereotype.Component;
  * @create: 2023/03/06 13:10
  */
 @Component
-public class UserDao {
+public class UserDao  {
 
-    public void  modify(UserDO userDO){
-
-    }
 }

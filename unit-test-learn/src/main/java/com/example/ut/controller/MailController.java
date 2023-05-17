@@ -1,6 +1,8 @@
 package com.example.ut.controller;
 
+import com.example.ut.entity.UserDO;
 import com.example.ut.manager.MailManager;
+import com.example.ut.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,9 +19,18 @@ public class MailController {
 
     @Autowired
     MailManager mailManager;
+    @Autowired
+    UserMapper userMapper;
 
     @PostMapping("testMail")
     public void testMail(){
         mailManager.sendEmail();
+    }
+
+
+    @PostMapping("testAsa")
+    public void testAsa(){
+      UserDO userDO =  userMapper.queryUserById(1L);
+      System.out.println(userDO);
     }
 }

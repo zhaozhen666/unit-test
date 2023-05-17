@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ut.mapper.UserMapper">
+    <resultMap id="selectAssociation" type="com.example.ut.entity.UserDO">
+        <result property="uid" column="id" />
+        <result property="name" column="name" />
+        <association property="userInfo" column="info_id" javaType="com.example.ut.entity.UserInfo"
+                     select="queryInfo"/>
+    </resultMap>
+    
+    <select id="queryUserById" resultMap="selectAssociation">
+        select  * from user where id =#{uid}
+    </select>
+    
+    <select id="queryInfo" resultType="com.example.ut.entity.UserInfo">
+        select  * from user_info where id = #{id}
+    </select>
+</mapper>
