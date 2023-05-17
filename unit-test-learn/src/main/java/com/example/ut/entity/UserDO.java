@@ -3,6 +3,8 @@ package com.example.ut.entity;
 import lombok.Data;
 import lombok.ToString;
 
+import java.util.List;
+
 /**
  * @description: db
  * @author: zhaozhen
@@ -18,5 +20,7 @@ public class UserDO {
 
     private String desc;
 
-    private UserInfo userInfo;
+//    private UserInfo userInfo;
+
+    private List<UserInfo> infos;
 }

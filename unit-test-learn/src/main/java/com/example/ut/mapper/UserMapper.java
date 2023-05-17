@@ -2,6 +2,7 @@ package com.example.ut.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.ut.entity.UserDO;
+import com.example.ut.entity.UserInfo;
 
 /**
  * @description: 数据库操作
@@ -12,4 +13,6 @@ public interface UserMapper extends BaseMapper<UserDO> {
 
 
     public  UserDO queryUserById(Long uid);
+
+    public UserDO queryUserInfosById(Long uid);
 }

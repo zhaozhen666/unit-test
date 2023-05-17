@@ -33,4 +33,10 @@ public class MailController {
       UserDO userDO =  userMapper.queryUserById(1L);
       System.out.println(userDO);
     }
+
+    @PostMapping("testCol")
+    public void testCol(){
+        UserDO userDO =  userMapper.queryUserInfosById(1L);
+        System.out.println(userDO);
+    }
 }
